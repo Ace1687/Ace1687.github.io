@@ -1,0 +1,619 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Abdulaziz Alhammadi - I build things that think, and now one that moves.">
+<meta name="theme-color" content="#0D0F11">
+<meta property="og:title" content="Abdulaziz Alhammadi">
+<meta property="og:description" content="I build things that think - and now one that moves.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="lamp.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%230D0F11'/><rect x='38' y='30' width='24' height='30' fill='%23FFD089'/></svg>">
+<style>html{-webkit-text-size-adjust:100%}img{max-width:100%}</style>
+<title>Abdulaziz Alhammadi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,400..900&family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+
+<style>
+  /* ════════════════════════════════════════════════════════════════════
+     Swiss-industrial structure (ui-ux-pro-max: Brutalism — 0 radius,
+     visible rules, heavy type, asymmetric grid) on a cool graphite
+     ground. The one indulgence is the lamp: a warm pool of light that
+     follows the cursor, because the photograph that anchors this page is
+     a garden lamp shot at night, and that's when the work happens.
+     ═══════════════════════════════════════════════════════════════════ */
+  :root {
+    --paper:  #ECEEF0;
+    --panel:  #E1E4E7;
+    --ink:    #0D0F11;
+    --ink-2:  #33383D;
+    --muted:  #5C646B;
+    --rule:   #0D0F11;
+    --hair:   #C3C8CD;
+    --signal: #D60019;
+    --on-sig: #FFFFFF;
+    --lamp:   rgba(214,0,25,.07);
+
+    --display: "Archivo", "Helvetica Neue", Arial, sans-serif;
+    --sans: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+    --mono: "IBM Plex Mono", Consolas, monospace;
+    --bw: 2px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper:  #0D0F11;
+      --panel:  #16191C;
+      --ink:    #ECEEF0;
+      --ink-2:  #C3C8CD;
+      --muted:  #939BA2;
+      --rule:   #4A5158;
+      --hair:   #262B30;
+      --signal: #FF2D46;
+      --on-sig: #0D0F11;
+      --lamp:   rgba(255,196,120,.10);
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper:  #0D0F11;
+    --panel:  #16191C;
+    --ink:    #ECEEF0;
+    --ink-2:  #C3C8CD;
+    --muted:  #939BA2;
+    --rule:   #4A5158;
+    --hair:   #262B30;
+    --signal: #FF2D46;
+    --on-sig: #0D0F11;
+    --lamp:   rgba(255,196,120,.10);
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* the cursor lamp */
+  #lamp {
+    position: fixed;
+    width: 620px; height: 620px;
+    left: 0; top: 0;
+    margin: -310px 0 0 -310px;
+    border-radius: 50%;
+    background: radial-gradient(circle, var(--lamp) 0%, transparent 62%);
+    pointer-events: none;
+    opacity: 0;
+    z-index: 0;
+  }
+  @media (hover: none) { #lamp { display: none; } }
+
+  .sheet { max-width: 1120px; margin: 0 auto; padding-inline: 18px; position: relative; z-index: 1; }
+
+  /* ── rail ─────────────────────────────────────────────────────────── */
+  .rail {
+    display: flex; flex-wrap: wrap; gap: 8px 18px;
+    justify-content: space-between; align-items: baseline;
+    border-bottom: var(--bw) solid var(--rule);
+    padding-block: 14px;
+    font-family: var(--mono); font-size: .72rem;
+    letter-spacing: .04em; text-transform: uppercase;
+  }
+  .rail .mark { font-weight: 600; }
+  .rail .where { color: var(--muted); }
+  .rail .dot {
+    display: inline-block; width: 7px; height: 7px;
+    background: var(--signal); margin-right: 7px; vertical-align: 1px;
+  }
+
+  /* ── hero ─────────────────────────────────────────────────────────── */
+  header {
+    border-bottom: var(--bw) solid var(--rule);
+    padding-block: clamp(32px,6vw,64px) clamp(26px,5vw,48px);
+  }
+  h1 {
+    font-family: var(--display);
+    font-variation-settings: "wdth" 112, "wght" 800;
+    font-size: clamp(2.6rem, 12.5vw, 7.6rem);
+    line-height: .88; letter-spacing: -.035em;
+    text-transform: uppercase; margin: 0;
+    overflow-wrap: break-word;
+  }
+  h1 .w { display: inline-block; }
+  .thesis {
+    font-weight: 500;
+    font-size: clamp(1.05rem, 2.7vw, 1.45rem);
+    line-height: 1.38; margin: 24px 0 0;
+    max-width: 36ch; color: var(--ink-2);
+  }
+  .thesis mark {
+    background: var(--signal); color: var(--on-sig);
+    padding: 0 .22em; font-weight: 600;
+  }
+
+  /* ── readout strip: playful, but every figure is real ─────────────── */
+  .readout {
+    display: grid; grid-template-columns: repeat(2, 1fr);
+    border-bottom: var(--bw) solid var(--rule);
+  }
+  @media (min-width: 720px) { .readout { grid-template-columns: repeat(4, 1fr); } }
+  .readout div {
+    border-right: 1px solid var(--hair);
+    border-top: 1px solid var(--hair);
+    padding: 16px 16px 18px;
+  }
+  .readout div:last-child { border-right: 0; }
+  @media (min-width: 720px) { .readout div { border-top: 0; } }
+  .readout .n {
+    display: block;
+    font-family: var(--display);
+    font-variation-settings: "wdth" 108, "wght" 800;
+    font-size: clamp(1.7rem, 5vw, 2.5rem);
+    line-height: 1; letter-spacing: -.03em;
+    font-variant-numeric: tabular-nums;
+  }
+  .readout .n b { color: var(--signal); font-weight: inherit; }
+  .readout .k {
+    display: block; margin-top: 8px;
+    font-family: var(--mono); font-size: .66rem;
+    letter-spacing: .09em; text-transform: uppercase; color: var(--muted);
+  }
+
+  /* ── sections ─────────────────────────────────────────────────────── */
+  section { border-bottom: var(--bw) solid var(--rule); }
+  .row { display: grid; }
+  @media (min-width: 880px) {
+    .row { grid-template-columns: 210px minmax(0,1fr); }
+    .row > .head { border-right: var(--bw) solid var(--rule); padding-right: 22px; }
+  }
+  .head {
+    padding-block: 22px;
+    font-family: var(--mono); font-size: .72rem; font-weight: 600;
+    letter-spacing: .1em; text-transform: uppercase;
+  }
+  .head span {
+    display: block; color: var(--muted); font-weight: 400;
+    margin-top: 6px; letter-spacing: .02em; text-transform: none;
+  }
+  .body { padding-block: 22px; }
+  @media (min-width: 880px) { .body { padding-left: 28px; } }
+
+  /* ── work ─────────────────────────────────────────────────────────── */
+  .item { border-top: 1px solid var(--hair); padding-block: 22px; }
+  .item:first-child { border-top: 0; padding-top: 0; }
+  .item-top { display: flex; flex-wrap: wrap; gap: 8px 13px; align-items: center; margin-bottom: 9px; }
+  .item h2 {
+    font-family: var(--display);
+    font-variation-settings: "wdth" 108, "wght" 700;
+    font-size: clamp(1.15rem, 3vw, 1.55rem);
+    letter-spacing: -.018em; text-transform: uppercase; margin: 0;
+  }
+  .tag {
+    font-family: var(--mono); font-size: .62rem; font-weight: 600;
+    letter-spacing: .1em; text-transform: uppercase;
+    padding: 4px 9px; border: var(--bw) solid var(--rule);
+  }
+  .tag.on { background: var(--signal); color: var(--on-sig); border-color: var(--signal); }
+  .item p { margin: 0 0 13px; max-width: 60ch; color: var(--ink-2); }
+  .item p b { color: var(--ink); font-weight: 600; }
+  .specs {
+    display: flex; flex-wrap: wrap; margin: 0; padding: 0; list-style: none;
+    font-family: var(--mono); font-size: .69rem; letter-spacing: .04em;
+    text-transform: uppercase; color: var(--muted);
+  }
+  .specs li {
+    border: 1px solid var(--hair); padding: 4px 10px; margin: -1px 0 0 -1px;
+    transition: color .15s, border-color .15s, transform .15s;
+  }
+  .specs li:hover { color: var(--signal); border-color: var(--signal); transform: translateY(-2px); }
+
+  /* ── ask me ───────────────────────────────────────────────────────── */
+  details { border-top: 1px solid var(--hair); }
+  details:first-of-type { border-top: 0; }
+  summary {
+    cursor: pointer; list-style: none;
+    padding: 16px 40px 16px 0; position: relative;
+    font-family: var(--display);
+    font-variation-settings: "wdth" 104, "wght" 600;
+    font-size: 1rem; letter-spacing: -.005em;
+    transition: color .15s;
+  }
+  summary::-webkit-details-marker { display: none; }
+  summary:hover { color: var(--signal); }
+  summary:focus-visible { outline: var(--bw) solid var(--signal); outline-offset: 3px; }
+  summary::after {
+    content: "+"; position: absolute; right: 2px; top: 50%;
+    transform: translateY(-50%);
+    font-family: var(--mono); font-size: 1.1rem; color: var(--muted);
+    transition: transform .2s ease, color .15s;
+  }
+  details[open] summary { color: var(--signal); }
+  details[open] summary::after { transform: translateY(-50%) rotate(45deg); color: var(--signal); }
+  .ans {
+    margin: 0 0 20px; padding: 15px 17px;
+    background: var(--panel); border-left: 4px solid var(--signal);
+    color: var(--ink-2); max-width: 62ch;
+  }
+  .roll {
+    margin-top: 18px;
+    font-family: var(--mono); font-size: .7rem; font-weight: 600;
+    letter-spacing: .08em; text-transform: uppercase;
+    background: transparent; color: var(--ink);
+    border: var(--bw) solid var(--rule); border-radius: 0;
+    /* 44px minimum tap target — the thumb, not the cursor, sets this */
+    min-height: 44px; padding: 12px 18px; cursor: pointer;
+    transition: background .15s, color .15s, border-color .15s;
+  }
+  .roll:hover { background: var(--signal); color: var(--on-sig); border-color: var(--signal); }
+  .roll:focus-visible { outline: var(--bw) solid var(--signal); outline-offset: 3px; }
+
+  /* ── off the clock: photo + music ─────────────────────────────────── */
+  .off { display: grid; gap: 0; }
+  @media (min-width: 760px) { .off { grid-template-columns: 1.15fr 1fr; } }
+
+  figure {
+    margin: 0; border: 1px solid var(--hair);
+    padding: 12px 12px 0; background: var(--panel);
+  }
+  figure img { display: block; width: 100%; height: auto; }
+  /* Stand-in if the photo hasn't been added yet — evokes the shot (one warm
+     light in the dark) rather than showing a broken image. */
+  .slot {
+    aspect-ratio: 1280 / 852; width: 100%;
+    background:
+      radial-gradient(circle at 50% 56%, rgba(255,214,150,.55) 0%, rgba(255,190,110,.16) 16%, transparent 46%),
+      linear-gradient(#0b0d0c, #131a14);
+  }
+  figcaption {
+    font-family: var(--mono); font-size: .66rem; color: var(--muted);
+    letter-spacing: .04em; padding: 11px 2px 13px; line-height: 1.6;
+  }
+  figcaption b { color: var(--ink); font-weight: 600; }
+
+  .music {
+    border: 1px solid var(--hair); border-left-width: 0;
+    padding: 18px;
+  }
+  @media (max-width: 759px) { .music { border-left-width: 1px; border-top-width: 0; } }
+  .music h3 {
+    font-family: var(--display);
+    font-variation-settings: "wdth" 106, "wght" 700;
+    font-size: 1.15rem; text-transform: uppercase; letter-spacing: -.015em;
+    margin: 0 0 10px;
+  }
+  .music p { margin: 0 0 14px; color: var(--ink-2); font-size: .95rem; }
+  .pct {
+    border-top: 1px solid var(--hair); padding-top: 14px;
+    font-family: var(--mono); font-size: .68rem;
+    letter-spacing: .07em; text-transform: uppercase; color: var(--muted);
+  }
+  .bar { height: 8px; background: var(--hair); margin: 9px 0 7px; position: relative; }
+  .bar i { position: absolute; inset: 0 99% 0 0; background: var(--signal); }
+  .pct b { color: var(--signal); }
+
+  /* ── crossings ────────────────────────────────────────────────────── */
+  .cross { display: grid; grid-template-columns: 1fr; }
+  @media (min-width: 620px) { .cross { grid-template-columns: 1fr 1fr; } }
+  .cross div {
+    font-family: var(--mono); font-size: .78rem; font-weight: 600;
+    text-transform: uppercase; letter-spacing: .02em;
+    border: 1px solid var(--hair); padding: 14px 15px; margin: -1px 0 0 -1px;
+    transition: background .15s;
+  }
+  .cross div:hover { background: var(--panel); }
+  .cross div i { font-style: normal; color: var(--signal); padding: 0 .35em; }
+
+  /* ── close ────────────────────────────────────────────────────────── */
+  footer { padding-block: clamp(30px,5vw,52px) 64px; }
+  .sign {
+    font-family: var(--display);
+    font-variation-settings: "wdth" 104, "wght" 600;
+    font-size: clamp(1.1rem, 2.7vw, 1.5rem);
+    line-height: 1.32; letter-spacing: -.015em;
+    max-width: 30ch; margin: 0 0 28px;
+  }
+  .links { display: flex; flex-wrap: wrap; margin: 0 0 28px; padding: 0; list-style: none; }
+  .links a {
+    display: inline-block;
+    font-family: var(--mono); font-size: .75rem; font-weight: 600;
+    letter-spacing: .08em; text-transform: uppercase;
+    color: var(--ink); text-decoration: none;
+    padding: 13px 22px; border: var(--bw) solid var(--rule);
+    margin: -2px 0 0 -2px;
+    transition: background .15s, color .15s, border-color .15s;
+  }
+  .links a:hover { background: var(--signal); color: var(--on-sig); border-color: var(--signal); }
+  .links a:focus-visible { outline: var(--bw) solid var(--signal); outline-offset: 3px; }
+  .note {
+    font-family: var(--mono); font-size: .68rem; color: var(--muted);
+    margin: 0; letter-spacing: .02em; max-width: 56ch; line-height: 1.75;
+  }
+</style>
+</head>
+<body>
+<div id="lamp" aria-hidden="true"></div>
+
+<div class="sheet">
+
+  <div class="rail">
+    <span class="mark"><span class="dot"></span>Abdulaziz Samer Alhammadi</span>
+    <span class="where">Melbourne &middot; builds after midnight</span>
+  </div>
+
+  <header>
+    <h1><span class="w">Abdulaziz</span> <span class="w">Alhammadi</span></h1>
+    <p class="thesis">I build things that think &mdash; and now one that <mark>moves</mark>.</p>
+  </header>
+
+  <div class="readout">
+    <div><span class="n">3</span><span class="k">rewrites of the same idea</span></div>
+    <div><span class="n">6</span><span class="k">degrees of freedom, planned</span></div>
+    <div><span class="n">0</span><span class="k">cloud calls made</span></div>
+    <div><span class="n">Top <b>1%</b></span><span class="k">of Laufey's listeners</span></div>
+  </div>
+
+  <section>
+    <div class="row">
+      <div class="head">On the bench<span>three things, honestly labelled</span></div>
+      <div class="body">
+
+        <div class="item">
+          <div class="item-top">
+            <h2>Betto</h2>
+            <span class="tag on">Running</span>
+          </div>
+          <p>A personal AI assistant I wrote in Python. It runs <b>entirely on my
+          laptop</b> &mdash; no cloud, no API bill, and it still works when the wifi doesn't.
+          It keeps my tasks and memory, searches the web, and picks which model to
+          think with depending on what I asked it.</p>
+          <ul class="specs">
+            <li>Python</li><li>PyQt6</li><li>Ollama</li><li>3 rewrites</li><li>Local-first</li>
+          </ul>
+        </div>
+
+        <div class="item">
+          <div class="item-top">
+            <h2>Betto &mdash; the robot</h2>
+            <span class="tag on">In production</span>
+          </div>
+          <p>The same assistant, getting a body. A small wheeled robot with a display
+          and a voice, so the thing I talk to stops living behind a window and starts
+          sharing the room.</p>
+          <ul class="specs">
+            <li>Servos</li><li>Display</li><li>Onboard voice</li><li>Printed in-house</li>
+          </ul>
+        </div>
+
+        <div class="item">
+          <div class="item-top">
+            <h2>Robotic hand</h2>
+            <span class="tag">Researching</span>
+          </div>
+          <p>Six degrees of freedom, a servo per finger, pressure sensors in the
+          fingertips. Still spec and reading &mdash; the first real step is <b>one finger that
+          moves</b>, not five that don't.</p>
+          <ul class="specs">
+            <li>6 DOF</li><li>ESP32</li><li>3D printed</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="row">
+      <div class="head">Ask me about<span>pick one, or roll the dice</span></div>
+      <div class="body">
+
+        <details>
+          <summary>Why my assistant refuses to touch the cloud</summary>
+          <p class="ans">Three reasons, and privacy is only one. It costs nothing to
+          run, nobody else can discontinue it, and it works on a plane. The trade is
+          speed &mdash; my laptop has no dedicated graphics, so it thinks slowly, and I've
+          had to care a lot about which model does which job.</p>
+        </details>
+
+        <details>
+          <summary>Reading Plato and ibn Sina for a computing degree</summary>
+          <p class="ans">History of Ideas is part of my course and it's the one I argue
+          about most. Ibn Sina was doing cognitive science in the eleventh century. If
+          you're building something meant to reason, it helps to know how long people
+          have been arguing about what reasoning even is.</p>
+        </details>
+
+        <details>
+          <summary>The thing I'm worst at</summary>
+          <p class="ans">Finishing. I get excited by the next idea while the current one
+          is at eighty percent. Naming it out loud helps more than I expected &mdash; and I've
+          stopped letting myself start a fourth version of anything.</p>
+        </details>
+
+        <details>
+          <summary>Why I'd rather build it than plan it</summary>
+          <p class="ans">Planning feels like progress and mostly isn't. An afternoon of
+          building teaches me what a week of reading wouldn't, usually by breaking in a
+          way I couldn't have predicted. I still overthink &mdash; I've just learned the
+          fastest way out is to make something.</p>
+        </details>
+
+        <details>
+          <summary>What a jazz singer has to do with robotics</summary>
+          <p class="ans">Nothing, and that's the point. Laufey was the first concert I
+          ever went to &mdash; Rod Laver, July 2026 &mdash; and I'm apparently in the top 1% of her
+          listeners. Engineering all day needs a counterweight that isn't a screen.
+          Hers is the album that gets played while I'm soldering.</p>
+        </details>
+
+        <button class="roll" id="roll" type="button">Surprise me &rarr;</button>
+
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="row">
+      <div class="head">Off the clock<span>the counterweight</span></div>
+      <div class="body">
+        <div class="off">
+
+          <figure>
+            <img src="lamp.jpg" width="1280" height="852"
+                 alt="A small garden lamp glowing among succulents at night, the only light in the frame."
+                 onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'slot'}));">
+            <figcaption><b>Shot on my camera, in the dark.</b> One lamp, a bed of
+            succulents, no flash. Wildlife and landscapes mostly &mdash; I like the problem of
+            having almost no light and taking the picture anyway.</figcaption>
+          </figure>
+
+          <div class="music">
+            <h3>Laufey, loudly</h3>
+            <p>My first concert ever: <b>Rod Laver Arena, 31 July 2026</b>, A Matter of
+            Time tour. I still have the ticket.</p>
+            <p>Jazz-leaning, orchestral, unhurried &mdash; the opposite of debugging.</p>
+            <div class="pct">
+              <div class="bar"><i></i></div>
+              <span>Spotify puts me in the <b>top 1%</b> of her listeners</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="row">
+      <div class="head">Crossings<span>where the interesting bits are</span></div>
+      <div class="body">
+        <p style="margin:0 0 20px; max-width:60ch; color:var(--ink-2);">I care more about
+        how a thing works than about using it, and fields borrow from each other far
+        more than they admit.</p>
+        <div class="cross">
+          <div>Engineering <i>&rarr;</i> Psychology</div>
+          <div>Robotics <i>&rarr;</i> Anatomy</div>
+          <div>Programming <i>&rarr;</i> Philosophy</div>
+          <div>Photography <i>&rarr;</i> Storytelling</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p class="sign">Trinity College now, University of Melbourne next, for computing.
+    Long term, I'd like to leave a few useful things behind.</p>
+    <ul class="links">
+      <li><a href="https://github.com/Ace1687" target="_blank" rel="noopener">GitHub &rarr;</a></li>
+    </ul>
+    <p class="note">Night owl always. Will talk about robots for longer than is
+    reasonable, and about why your speaker setup is wrong for longer than that.</p>
+  </footer>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+  /* Motion uses gsap.from() throughout, so the page's resting state is the
+     readable one &mdash; if the CDN fails or JS is off, everything simply shows.
+     Timings follow ui-ux-pro-max's gsap domain: Stagger List (subtle) and
+     Scroll Reveal (subtle). */
+  (function () {
+    var roll = document.getElementById("roll");
+    var items = Array.prototype.slice.call(document.querySelectorAll("details"));
+
+    if (roll && items.length) {
+      roll.addEventListener("click", function () {
+        var closed = items.filter(function (d) { return !d.open; });
+        var pool = closed.length ? closed : items;
+        var pick = pool[Math.floor(Math.random() * pool.length)];
+        items.forEach(function (d) { if (d !== pick) d.open = false; });
+        pick.open = true;
+        pick.querySelector("summary").focus();
+        pick.scrollIntoView({ block: "center", behavior: "smooth" });
+      });
+    }
+
+    if (!window.gsap) return;
+    if (window.ScrollTrigger) gsap.registerPlugin(ScrollTrigger);
+
+    var mm = gsap.matchMedia();
+
+    mm.add("(prefers-reduced-motion: no-preference)", function () {
+      gsap.from("h1 .w", { yPercent: 105, opacity: 0, duration: 0.7, stagger: 0.07, ease: "expo.out" });
+      gsap.from(".thesis", { opacity: 0, y: 10, duration: 0.45, delay: 0.32, ease: "power1.out" });
+      gsap.from(".rail > *", { opacity: 0, duration: 0.4, stagger: 0.06, ease: "power1.out" });
+
+      // Readout: count the figures up, so the strip earns its size.
+      gsap.utils.toArray(".readout .n").forEach(function (el) {
+        var raw = el.textContent.trim();
+        var digits = raw.match(/\d+/);
+        if (!digits) return;
+        var target = parseInt(digits[0], 10);
+        var before = raw.slice(0, raw.indexOf(digits[0]));
+        var obj = { v: 0 };
+        var paint = function (n) {
+          el.innerHTML = before + (raw.indexOf("%") > -1 ? "<b>" + n + "%</b>" : n);
+        };
+        gsap.to(obj, {
+          v: target, duration: 1.1, ease: "power2.out",
+          scrollTrigger: { trigger: el, start: "top 94%" },
+          onUpdate: function () { paint(Math.round(obj.v)); },
+          // If the tab is backgrounded mid-count, rAF throttles and the number
+          // can stall short of its target. Always land on the real figure.
+          onComplete: function () { paint(target); }
+        });
+      });
+
+      // Scroll Reveal (subtle): 12px so it reads as a fade, not a slide.
+      gsap.utils.toArray("section .head, .item, .cross div, figure, .music, footer .sign, footer .links, footer .note")
+        .forEach(function (el) {
+          gsap.from(el, {
+            opacity: 0, y: 12, duration: 0.35, ease: "power1.out",
+            scrollTrigger: { trigger: el, start: "top 92%", toggleActions: "play none none reverse" }
+          });
+        });
+
+      // Stagger List (subtle): 0.03s per chip, per the preset.
+      gsap.utils.toArray(".specs").forEach(function (list) {
+        gsap.from(list.children, {
+          opacity: 0, y: 8, duration: 0.3, stagger: 0.03, ease: "power1.out",
+          scrollTrigger: { trigger: list, start: "top 94%" }
+        });
+      });
+
+      // The 1% bar fills from empty.
+      gsap.fromTo(".bar i", { right: "100%" }, {
+        right: "99%", duration: 0.9, ease: "power2.out",
+        scrollTrigger: { trigger: ".bar", start: "top 92%" }
+      });
+
+      gsap.to(".rail .dot", { opacity: 0.25, duration: 1.1, repeat: -1, yoyo: true, ease: "power1.inOut" });
+
+      // The lamp follows the cursor, slowly, like light does.
+      var lamp = document.getElementById("lamp");
+      if (lamp) {
+        var x = gsap.quickTo(lamp, "x", { duration: 0.9, ease: "power3.out" });
+        var y = gsap.quickTo(lamp, "y", { duration: 0.9, ease: "power3.out" });
+        window.addEventListener("pointermove", function (e) {
+          if (e.pointerType === "touch") return;
+          gsap.to(lamp, { opacity: 1, duration: 0.6, overwrite: "auto" });
+          x(e.clientX); y(e.clientY);
+        }, { passive: true });
+        window.addEventListener("pointerleave", function () {
+          gsap.to(lamp, { opacity: 0, duration: 0.5, overwrite: "auto" });
+        });
+      }
+    });
+  })();
+</script>
+
+</body>
+</html>
